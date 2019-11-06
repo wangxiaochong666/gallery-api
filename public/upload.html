@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh-Hans-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>阿里云图床</title>
+  <link rel="stylesheet" href="styles/standard/standard.css" />
+</head>
+
+<body>
+  <h1>上传与分享您的照片</h1>
+  <div>
+    任意拖放图片到这里, 即开始上传你的图片. 最大 16 MB 图片大小.
+    直接的源图片链接, BBCode代码和HTML缩略图显示.
+  </div>
+
+  <div class="upload">
+    <div class="upload__input-block">
+      <input class="upload__input hide" type="file" accept=".jpg,.png,.bmp,.gif,.tif,.webp,.jpeg,.tiff" multiple="" />
+    </div>
+
+    <div class="upload__button-block">
+      <a class="upload__button btn btn--big btn--blue">开始上传</a>
+    </div>
+
+    <div class="upload__result">
+      <div class="upload__result-url"></div>
+    </div>
+  </div>
+
+  <script>
+    const $uploadButton = document.querySelector(".upload__button");
+    const $uploadInput = document.querySelector(".upload__input");
+    const $resultUri = document.querySelector(".upload__result-url");
+
+    function handleUploadButtonClick() {
+      $uploadInput.click();
+    }
+
+    function handleUploadInputChange() {
+      const [file] = $uploadInput.files;
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+
+      const searchParams = new URLSearchParams(location.search);
+
+      const upload = searchParams.get("upload") || "alibaba";
+
+      const saveType = searchParams.get('type') ? `${searchParams.get('type')}/`: '';
+
+      fetch(`/api/upload/${saveType}${upload}`, {
+        body: formData,
+        method: "POST",
+        mode: "no-cors"
+      })
+        .then(response => response.json())
+        .catch(error => console.error("Error:", error))
+        .then(response => {
+          $resultUri.textContent = response.data.url;
+          console.log("Success:", response);
+        });
+    }
+
+    $uploadButton.addEventListener("click", handleUploadButtonClick);
+    $uploadInput.addEventListener("change", handleUploadInputChange);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+:root {
+  font-size: 10vw;
+
+  @media (max-width: 1366px) {
+    font-size: 136.6px;
+  }
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+
+  @media (max-width: 1366px) {
+    width: 1366px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.btn {
+  user-select: none;
+}
+
+.btn {
+  height: 36px;
+  line-height: 36px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+
+  // Size
+  &--big {
+    font-size: 16px;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  // Color
+  &--blue {
+    color: #fff;
+    border-color: #2a80b9;
+    background-color: #2a80b9;
+  }
+}
+
+.btn,
+.btn:active,
+.btn:focus,
+.btn:hover {
+  text-decoration: none;
+}
+
+.upload__button {
+  font-size: 16px;
+  text-transform: uppercase;
+  min-height: 50px;
+  line-height: 1.5;
+  height: auto;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 12px 30px;
+}

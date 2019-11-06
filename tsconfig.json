@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["dom", "esnext"],
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "pkg": [
+        "package.json"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*", "backup/src/lib/runtime", "backup/error.ts", "backup/qiniu", "backup/alioss", "backup/services/storage"
+  ],
+  "exclude": []
+}
